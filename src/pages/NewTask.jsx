@@ -11,17 +11,20 @@ function NewTask() {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [deadLine, setDeadLine] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const navigation = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
+  const handleDeadLineChange = (e) => setDeadLine(e.target.value);
   const onCreateTask = () => {
     const data = {
       title,
       detail,
       done: false,
+      limit: deadLine,
     };
 
     axios
@@ -98,6 +101,18 @@ function NewTask() {
               onChange={handleDetailChange}
               className="new-task-detail"
               id="task-detail"
+            />
+          </label>
+          <br />
+
+          <label htmlFor="deadline">
+            期限
+            <br />
+            <input
+              type="datetime"
+              id="deadline"
+              className="new-task-deadline"
+              onChange={handleDeadLineChange}
             />
           </label>
 

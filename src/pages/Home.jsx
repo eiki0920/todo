@@ -144,6 +144,8 @@ function Tasks(props) {
                 {task.title}
                 <br />
                 {task.done ? "完了" : "未完了"}
+                <br />
+                期限：{task.limit}
               </Link>
             </li>
           ))}
@@ -164,6 +166,8 @@ function Tasks(props) {
               {task.title}
               <br />
               {task.done ? "完了" : "未完了"}
+              <br />
+              期限：{task.limit}
             </Link>
           </li>
         ))}
