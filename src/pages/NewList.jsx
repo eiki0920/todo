@@ -1,34 +1,35 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { Header } from "../components/Header";
-import { useHistory } from "react-router-dom";
-import { url } from "../const";
-import "./newList.css";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import url from "../const";
+import "./newList.scss";
 
-export const NewList = () => {
+function NewList() {
   const [cookies] = useCookies();
-  const history = useHistory();
+  const navigation = useNavigate();
   const [title, setTitle] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (e) => setTitle(e.target.value);
   const onCreateList = () => {
     const data = {
-      title: title
-    }
+      title,
+    };
 
-    axios.post(`${url}/lists`, data, {
-      headers: {
-        authorization: `Bearer ${cookies.token}`
-      }
-    })
-    .then(() => {
-      history.push("/");
-    })
-    .catch((err) => {
-      setErrorMessage(`リストの作成に失敗しました。${err}`);
-    })
-  }
+    axios
+      .post(`${url}/lists`, data, {
+        headers: {
+          authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then(() => {
+        navigation("/");
+      })
+      .catch((err) => {
+        setErrorMessage(`リストの作成に失敗しました。${err}`);
+      });
+  };
 
   return (
     <div>
@@ -37,11 +38,29 @@ export const NewList = () => {
         <h2>リスト新規作成</h2>
         <p className="error-message">{errorMessage}</p>
         <form className="new-list-form">
-          <label>タイトル</label><br />
-          <input type="text" onChange={handleTitleChange} className="new-list-title" /><br />
-          <button type="button" onClick={onCreateList} className="new-list-button">作成</button>
+          <label htmlFor="title">
+            タイトル
+            <br />
+            <input
+              type="text"
+              onChange={handleTitleChange}
+              className="new-list-title"
+              id="title"
+            />
+          </label>
+
+          <br />
+          <button
+            type="button"
+            onClick={onCreateList}
+            className="new-list-button"
+          >
+            作成
+          </button>
         </form>
       </main>
     </div>
-  )
+  );
 }
+
+export default NewList;
