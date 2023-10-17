@@ -33,3 +33,15 @@
 .error-message {
   color: #ff3333;
 }
+
+@media screen and (max-width: 780px) {
+  .signin {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .signin {
+    width: 75%;
+  }
+}

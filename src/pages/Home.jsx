@@ -85,12 +85,16 @@ function Home() {
           </div>
           <ul className="list-tab">
             {lists.map((list) => {
+              // listのidとselectListIdのidが等しければtrue
               const isActive = list.id === selectListId;
 
               return (
                 <button
                   key={list.id}
                   className={`list-tab-item ${isActive ? "active" : ""}`}
+                  // role="tab"
+                  // aria-controls={list.id}
+                  // tabIndex="0"
                   onClick={() => handleSelectList(list.id)}
                   type="button"
                 >

@@ -30,7 +30,8 @@
   align-items: center;
 }
 
-.active {
+.active,
+.list-tab-item:focus {
   background-color: #242f9b;
   color: #ffffff;
 }
@@ -73,4 +74,44 @@
 
 .display-select {
   width: 100%;
+}
+
+@media screen and (min-width: 320px) {
+  .taskList {
+    width: 90%;
+  }
+
+  .list-tab-item {
+    width: auto;
+    padding: 0 15px;
+  }
+
+  .task-item {
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .list-header,
+  .tasks-header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .list-menu {
+    margin-top: 10px;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .display-select-wrapper {
+    width: 50%;
+    margin: 0 0 10px 0;
+    text-align: left;
+  }
+  .display-select option {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+  }
 }
